@@ -1,0 +1,21 @@
+<%- include("./partials/header.ejs") -%>
+<ul class="mssg m-5 p-0">
+    <%if(messages.length>0){%>
+        <%messages.forEach(function(message){%>
+            <%if(message.from.equals(fromId)){%>
+            <p class="text-right mb-3"><span class="bg-dark para p-2" style="border-radius: 10%;color:white"><%=message.text%> <i onclick="handleClick.bind(null,'/messages/delete/<%=fromId%>/<%=toId%>/<%=message._id%>')()" class="fas fa-trash icon"></i></span></p>
+            <%}else{%>
+            <p class="text-left mb-3"><span class="bg-light p-2" style="border-radius: 10%;"><%=message.text%></span></p>
+            <%}%>
+        <%})%>
+        <%}%>
+</ul>
+<form class="fixed-bottom ml-4 mb-0 myForm" action="/messages/<%=fromId%>/<%=toId%>" method="post">
+    <div class="form-group row justify-content-start mb-1">
+    <input class="form-control col-6 col-lg-8 col-sm-6 mr-3 myData" placeholder="Type Something" type="text" name="message" id="message" autofocus>
+    <button class="btn btn-success col-2 col-lg-1 col-sm-3">Send</button>
+    </div>
+</form>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js></script>
+<script src="/js/messages.js"></script>
+<%- include("./partials/footer.ejs") -%>

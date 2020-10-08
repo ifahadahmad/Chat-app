@@ -1,0 +1,8 @@
+.icon{
+    opacity: 0;
+    font-size: 12px;
+    transition: all .5s ease;
+}
+.para:hover .icon{
+    opacity: 1;
+}

@@ -1,0 +1,40 @@
+<%- include("./partials/header.ejs") -%>
+<ul class="group-list m-5 p-0" style="display: flex;flex-direction: column;">
+    <%if(messages.length>0){%>
+        <%messages.forEach(function(message){%>
+            <%if(message.from.equals(fromId)){%>
+            <div class="list m-2" style="align-self: flex-end;">
+                <span class="bg-dark p-2 rounded" style="display: flex;color:white;width:fit-content;flex-direction: column;">
+                <span class="para">
+                    You:
+                    <i onclick="handleClick('/group/delete/<%=fromId%>/<%=message._id%>')" class="fas fa-trash float-right icon"></i>
+                </span>
+                <span>
+                    <%=message.text%> 
+                </span>
+                </span>
+                </div>
+            <%}else{%>
+            <div class="list m-2" style="align-self: flex-start;">
+                <span class="bg-light p-2 rounded" style="display: flex;width:fit-content;flex-direction: column;">
+                <span>
+                    <%=message.from.username%>:
+                </span>
+                <span>
+                    <%=message.text%>
+                </span>
+                </span>
+            </div>
+            <%}%>
+        <%})%>
+        <%}%>
+</ul>
+<form class="fixed-bottom ml-4 mb-0" action="/group/<%=fromId%>" method="post">
+    <div class="form-group row justify-content-start">
+    <input class="form-control col-6 col-lg-8 col-sm-6 mr-3" placeholder="Type Something" type="text" name="message" id="message" autofocus>
+    <button class="btn btn-success col-2 col-lg-1 col-sm-3">Send</button>
+    </div>
+</form>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js></script>
+<script src="/js/group.js"></script>
+<%- include("./partials/footer.ejs") -%>

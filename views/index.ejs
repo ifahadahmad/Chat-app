@@ -1,0 +1,15 @@
+<%- include("./partials/header.ejs") -%>
+    <h2>Current Users are:</h2>
+    <div class="container">
+    <ul class="list-group">
+        <%if(userId){%>
+        <a class="list-group-item list-group-item-action" href="/group/<%=userId%>"><span>Group chat</span></a>
+        <%}%>
+    <%users.forEach(function(user){%>
+        <a class="list list-group-item list-group-item-action" href="/messages/<%=username%>/<%=user.username%>"><span><%=user.username%></span><span class="rounded-circle float-right text-success"></span></a>
+    <%})%>
+    </ul>
+    </div>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js></script>
+<script src="/js/index.js"></script>
+<%-include("./partials/footer.ejs") -%>
